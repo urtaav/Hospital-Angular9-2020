@@ -11,9 +11,7 @@ export class IncrementadorComponent implements OnInit {
   @Input('title') leyenda: string = 'Leyenda';
   @Input() progreso: number = 50;
 
-  @Output('updateValue') changeThisValue: EventEmitter<
-    number
-  > = new EventEmitter();
+  @Output('updateValue') changeThisValue: EventEmitter<number> = new EventEmitter();
 
   constructor() {
     // console.log('Leyenda', this.leyenda);
@@ -22,7 +20,7 @@ export class IncrementadorComponent implements OnInit {
   ngOnInit(): void {
     // console.log('progreso', this.progreso);
   }
-  onChange(newValue: number) {
+  onChanges(newValue: number) {
     // console.log('newValue', newValue);
 
     // let elementHtml: any = document.getElementsByName('progreso')[0];
@@ -42,11 +40,14 @@ export class IncrementadorComponent implements OnInit {
 
   changeValue(value: number) {
 
-    if (this.progreso >= 1000) {
+    if (this.progreso >= 1000 && value > 0 )  {
+      this.progreso = 100;
       return;
     }
 
-    if (this.progreso <= 0) {
+    if (this.progreso <= 0 && value < 0) {
+      this.progreso = 0;
+
       return;
     }
 
