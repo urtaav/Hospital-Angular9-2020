@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 // import * as swal from 'sweetalert';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { UploadFileService } from '../upload-file/upload-file.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
   user:User;
   token:string;
 
-  constructor(public http:HttpClient,public router:Router) { 
+  constructor(public http:HttpClient,public router:Router,public _uploadFileService: UploadFileService) { 
     this.loadStorage();
   }
 
@@ -34,7 +35,7 @@ export class UserService {
     }
   }
   
-  savaInfoUserStorage(id:string,token:string,user:User){
+  saveInfoUserStorage(id:string,token:string,user:User){
     localStorage.setItem('id',id);
     localStorage.setItem('token',token);
     localStorage.setItem('user',JSON.stringify(user));
@@ -60,7 +61,7 @@ export class UserService {
     return this.http.post(url, { token })
     .pipe(
       map((resp:any) =>{
-        this.savaInfoUserStorage(resp.id,resp.token,resp.user);
+        this.saveInfoUserStorage(resp.id,resp.token,resp.user);
         return true;
       })
     )
@@ -78,7 +79,7 @@ export class UserService {
     return this.http.post(url,user)
     .pipe(
       map( (resp:any) => {
-        this.savaInfoUserStorage(resp.id,resp.token,resp.user);
+        this.saveInfoUserStorage(resp.id,resp.token,resp.user);
         return true;
       })
     )
@@ -96,4 +97,35 @@ export class UserService {
       }) 
     )
   }
+
+  updateUser(user:User){
+
+    let url = URL_SERVICES + '/user/' + user._id;
+    url += '?token=' + this.token;
+
+    return this.http.put(url, user).pipe(
+      map( (resp: any) => {
+        this.saveInfoUserStorage(resp.user._id,this.token,resp.user);
+        Swal.fire('Usuario actualizado', user.name, 'success');
+        return true;
+      })
+    )
+  }
+
+  changeImage(file:File,id:string){
+    
+    this._uploadFileService.uploadFile(file,'users',id)
+      .then( (resp:any) =>{
+        console.log("resp changeImage",resp);
+        this.user.img = resp.user.img;
+        console.log("changeImage",this.user.img);
+        
+        Swal.fire('Imagen cambiada', this.user.name, 'success');
+        this.saveInfoUserStorage(id,this.token,this.user);
+      })
+      .catch( resp=>{
+        console.log("error",resp);
+      })
+  }
+
 }
