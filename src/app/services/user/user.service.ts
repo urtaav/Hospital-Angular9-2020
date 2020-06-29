@@ -105,7 +105,11 @@ export class UserService {
 
     return this.http.put(url, user).pipe(
       map( (resp: any) => {
-        this.saveInfoUserStorage(resp.user._id,this.token,resp.user);
+
+        if(user._id === this.user._id){
+
+          this.saveInfoUserStorage(resp.user._id,this.token,resp.user);
+        }
         Swal.fire('Usuario actualizado', user.name, 'success');
         return true;
       })
@@ -128,4 +132,23 @@ export class UserService {
       })
   }
 
+  loadUsers(desde:number = 0){
+
+    let url = URL_SERVICES + '/user?desde=' + desde;
+    return this.http.get(url);
+  }
+
+  searchUsers(query:string){
+    let url = URL_SERVICES + '/search/collection/users/' + query;
+    return this.http.get(url).pipe(
+      map( (resp:any) => resp.users)
+    )
+  }
+
+  deleteUser(id:string){
+    let url = URL_SERVICES + '/user/' + id;
+    url += '?token=' + this.token;
+
+    return this.http.delete(url);
+  }
 }

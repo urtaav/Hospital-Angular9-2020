@@ -20,7 +20,6 @@ export class UploadFileService {
       xhr.onreadystatechange = () =>{
         if( xhr.readyState === 4){
           if(xhr.status === 200){
-            console.log("images subida");
             resolve(JSON.parse( xhr.response ));
           }else{
             console.log( 'Fallo la subida' );
@@ -28,8 +27,6 @@ export class UploadFileService {
           }
         }
       }
-console.log("formData",formData);
-
       let url = URL_SERVICES + '/upload/' + type + '/' + id;
       xhr.open('PUT',url,true);
       xhr.send(formData);
