@@ -82,7 +82,7 @@ export class UsersComponent implements OnInit {
     
     swalWithBootstrapButtons.fire({
       title: '¿Esta seguro?',
-      text: 'esta apunto de eliminar a el usuario ' + user.name,
+      text: 'Esta apunto de eliminar a el usuario ' + user.name,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Si, eliminar!',

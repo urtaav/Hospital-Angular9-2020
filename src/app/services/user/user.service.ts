@@ -89,7 +89,8 @@ export class UserService {
     
     let url = URL_SERVICES + '/user';
 
-    return this.http.post(url, user).pipe(
+    return this.http.post(url, user)
+    .pipe(
       map((resp:any) => {
         // swal("Usuario creado", user.email, "success");
         Swal.fire('Usuario creado', user.email, 'success');
