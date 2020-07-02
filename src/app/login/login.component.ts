@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../services/user/user.service';
 import { User } from '../models/user.model';
-import { element } from 'protractor';
-
+import Swal from 'sweetalert2';
 declare function init_plugins();
 declare const gapi: any;
 
@@ -64,9 +63,13 @@ export class LoginComponent implements OnInit {
 
     this._userService.login(user,loginForm.value.rememberMe)
       .subscribe( 
-      success => this.router.navigate(['/dashboard']),
-      err => {
-        console.log("error",err);
+      (success) => { 
+        this.router.navigate(['/dashboard']);
+        this.loading_spinner = false;
+      },
+      (err) => {
+        console.log("error component==>",err);
+        Swal.fire('Upz!', err.error.msg, 'error');
          setInterval(() => {
           this.loading_spinner = false;
         },2000);

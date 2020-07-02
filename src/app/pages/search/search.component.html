@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-4">
+        <!-- Card -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Users</h4>
+                <table class="table table-hover"  *ngIf="users.length > 0">
+                    <tbody>
+                        <tr *ngFor="let user of users" [routerLink]="['/users']"  class="pointer">
+                            <td class="w70"><img [src]="user.img | image" alt="No image" class="img-50 img-circle"> </td>
+                            <th>{{user.name}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="users.length === 0">
+                    <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button> -->
+                    <h3 class="text-info"><i class="fa fa-exclamation-circle"></i></h3>
+                    No se han encontrado resultados para tu búsqueda ({{query}}).
+                </div>
+            </div>
+        </div>
+        <!-- Card -->
+    </div>
+    <div class="col-md-4">
+        <!-- Card -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospitals</h4>
+                <table class="table table-hover"  *ngIf="hospitals.length > 0">
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitals" [routerLink]="['/hospitals']"  class="pointer">
+                            <td class="w70"><img  [src]="hospital.img | image:'hospitals'" alt="No image" class="img-50 img-circle"> </td>
+                            <th>{{hospital.name}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="hospitals.length === 0">
+                    <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button> -->
+                    <h3 class="text-info"><i class="fa fa-exclamation-circle"></i></h3>
+                    No se han encontrado resultados para tu búsqueda ({{query}}).
+                </div>
+            </div>
+        </div>
+        <!-- Card -->
+    </div>
+    <div class="col-md-4">
+        <!-- Card -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Doctors</h4>
+                <table class="table table-hover" *ngIf="doctors.length > 0">
+                    <tbody>
+                        <tr *ngFor="let doctor of doctors"  [routerLink]="['/doctor',doctor._id]"  class="pointer">
+                            <img  [src]="doctor.img | image:'doctors'" alt="No image" class="img-50 img-circle">
+                            <th>{{doctor.name}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="doctors.length === 0">
+                    <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button> -->
+                    <h3 class="text-info"><i class="fa fa-exclamation-circle"></i></h3>
+                    No se han encontrado resultados para tu búsqueda ({{query}}).
+                </div>
+            </div>
+        </div>
+        <!-- Card -->
+    </div>
+</div>

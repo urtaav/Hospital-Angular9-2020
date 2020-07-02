@@ -9,6 +9,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 
 
@@ -22,13 +23,15 @@ import { SidebarComponent } from './sidebar/sidebar.component';
      BreadcrumbsComponent,
      HeaderComponent, 
      NotFoundComponent,
-     SidebarComponent
+     SidebarComponent,
+     ModalUploadComponent
   ],
   exports: [
     BreadcrumbsComponent,
      HeaderComponent, 
      NotFoundComponent,
-     SidebarComponent
+     SidebarComponent,
+     ModalUploadComponent
   ]
 })
 export class SharedModule { }

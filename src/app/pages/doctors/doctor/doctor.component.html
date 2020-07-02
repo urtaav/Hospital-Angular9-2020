@@ -31,13 +31,13 @@
 <div class="col-md-3">
     <div class="card card-body">
         <h4 class="box-title m-b-0">Hospital</h4>
-        <img [src]="hospital.img | image:'hospitals'" alt="hospital.img" class="rounded img-fluid">
+        <img [src]="hospital.img | image:'hospitals'" alt="No image" class="rounded img-fluid">
     </div>
 </div>
 <div class="col-md-3" *ngIf="doctor._id">
     <div class="card card-body">
         <h4 class="box-title m-b-0">Image</h4>
-        <img (click)="changeImage()" [src]="doctor.img | image:'doctors'" alt="doctor.img" class="rounded img-fluid pointer">
+        <img (click)="changeImage()" [src]="doctor.img | image:'doctors'" alt="No image" class="rounded img-fluid pointer">
      </div>
 </div>
 

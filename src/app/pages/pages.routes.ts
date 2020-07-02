@@ -13,29 +13,31 @@ import { UsersComponent } from './users/users.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
+import { SearchComponent } from './search/search.component';
+import { AdminGuard,VericateTokenGuard } from '../services/service.index';
 
 const pagesRoutes : Routes = [
-    { 
-        path:'', 
-        component: PagesComponent,
-        canActivate:[ LoginGuardGuard],
-        children: [
-            { path:'dashboard', component: DashboardComponent, data:{ title:'Dashboard'} },
+            { path:'dashboard', component: DashboardComponent, 
+            canActivate:[ VericateTokenGuard],
+            data:{ title:'Dashboard'} },
             { path:'progress', component: ProgressComponent, data:{ title:'Progress'}  },
             { path:'graficas1', component: Graficas1Component, data:{ title:'Graficas'}  },
             { path:'account-settings', component: AccountSettingsComponent, data:{ title:'Ajustes cuenta'}  },
             { path:'profile', component: ProfileComponent, data:{ title:'Perfil de usuario'}  },
+            { path:'search/:termino', component: SearchComponent, data:{ title:'Buscador'}  },
             
             //Mantenimientos
-            { path:'users', component: UsersComponent, data:{ title:'Mantenimiento de usuarios'}  },
+            { path:'users', 
+            component: UsersComponent, 
+            canActivate:[ AdminGuard],
+             data:{ title:'Mantenimiento de usuarios'}  
+            },
             { path:'hospitals', component: HospitalsComponent, data:{ title:'Mantenimiento de hospitales'}  },
             { path:'doctors', component: DoctorsComponent, data:{ title:'Mantenimiento de doctores'}  },
             { path:'doctor/:id', component: DoctorComponent, data:{ title:'Actualizar medico'}  },
             { path:'promesas', component: PromesasComponent, data:{ title:'Promesas'}  },
             { path:'observables', component: RxjsComponent, data:{ title:'Observables'}  },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
-        ]
-    }
 ];
 //RUTAS HIJAS
 export const PAGES_ROUTES = RouterModule.forChild( pagesRoutes);

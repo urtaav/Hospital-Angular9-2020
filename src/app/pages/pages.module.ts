@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 // ng2-charts
 import { ChartsModule } from 'ng2-charts';
 
-import { PagesComponent } from './pages.component';
+// import { PagesComponent } from './pages.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -25,17 +25,18 @@ import { PipesModule } from '../pipes/pipes.module';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+// import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ProgressComponent, 
     Graficas1Component,
-    PagesComponent,
+    // PagesComponent,
     IncrementadorComponent,
     GraficaDonaComponent,
     AccountSettingsComponent,
@@ -43,16 +44,17 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
     RxjsComponent,
     ProfileComponent,
     UsersComponent,
-    ModalUploadComponent,
+    // ModalUploadComponent,
     HospitalsComponent,
     DoctorsComponent,
-    DoctorComponent
+    DoctorComponent,
+    SearchComponent
   ],
   exports: [
     DashboardComponent,
     ProgressComponent, 
     Graficas1Component,
-    PagesComponent,
+    // PagesComponent,
     IncrementadorComponent,
     GraficaDonaComponent
   ],

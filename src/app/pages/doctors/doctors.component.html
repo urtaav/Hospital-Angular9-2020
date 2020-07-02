@@ -46,7 +46,7 @@
                     <tbody>
                         <tr *ngFor="let doctor of doctors">
                             <td class="w70">
-                                <img (click)="updateImage(hospital)" [src]="doctor.img | image:'doctors'"
+                                <img  [src]="doctor.img | image:'doctors'"
                                     alt="doctor.img" class="img-50  pointer">
                             </td>
                             <td>
